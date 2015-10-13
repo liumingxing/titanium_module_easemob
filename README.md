@@ -2,7 +2,7 @@
 * 环信IM SDK的封装，暂时只做了ios，安卓还在开发中
 * 作者刘明星 lmxbitihero@126.com
 
-github不允许上传大于100M的文件，工程里面iphone/EaseMobSdk/libEaseMObClientSDK.a体积大于100M，故我暂时压缩了，使用的时候需要手动解开。
+github不允许上传大于100M的文件，工程里面iphone/EaseMobSdk/libEaseMObClientSDK.a体积大于100M，故我暂时压缩了，使用的时候需要手动解开。sample中引入的module也有一个文件大于100M，使用时先把module编出来，再导入到sample工程中即可。
 
 调用示例：
 ```ruby
