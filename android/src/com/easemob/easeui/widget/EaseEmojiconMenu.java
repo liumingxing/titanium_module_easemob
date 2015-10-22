@@ -23,6 +23,7 @@ import com.easemob.easeui.adapter.EaseExpressionPagerAdapter;
 import com.easemob.easeui.utils.EaseSmileUtils;
 
 import org.appcelerator.titanium.util.TiRHelper;
+import com.mamashai.easemob.RHelper;
 
 /**
  * 表情图片控件
@@ -64,8 +65,8 @@ public class EaseEmojiconMenu extends EaseEmojiconMenuBase{
 		catch(Exception e){
 		}
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.EaseEmojiconMenu);
-		emojiconColumns = ta.getInt(R.styleable.EaseEmojiconMenu_emojiconColumns, defaultColumns);
-		emojiconRows = ta.getInt(R.styleable.EaseEmojiconMenu_emojiconRows, defaultRows);
+		emojiconColumns = ta.getInt(RHelper.get("styleable.EaseEmojiconMenu_emojiconColumns"), defaultColumns);
+		emojiconRows = ta.getInt(RHelper.get("styleable.EaseEmojiconMenu_emojiconRows"), defaultRows);
 		ta.recycle();
 		// 表情list
 		reslist = getExpressionRes(EaseSmileUtils.getSmilesSize());

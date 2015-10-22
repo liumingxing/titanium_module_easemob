@@ -21,6 +21,7 @@ import com.easemob.easeui.R;
 import com.easemob.util.DensityUtil;
 
 import org.appcelerator.titanium.util.TiRHelper;
+import com.mamashai.easemob.RHelper;
 
 /**
  * 按+按钮出来的扩展按钮

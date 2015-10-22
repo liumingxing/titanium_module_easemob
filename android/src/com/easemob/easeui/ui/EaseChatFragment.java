@@ -151,18 +151,17 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
      * init view
      */
     protected void initView() {
-        try{
         // 按住说话录音控件
-        voiceRecorderView = (EaseVoiceRecorderView) getView().findViewById(TiRHelper.getApplicationResource("id.voice_recorder"));
+        voiceRecorderView = (EaseVoiceRecorderView) getView().findViewById(RHelper.get("id.voice_recorder"));
 
         // 消息列表layout
-        messageList = (EaseChatMessageList) getView().findViewById(TiRHelper.getApplicationResource("id.message_list"));
+        messageList = (EaseChatMessageList) getView().findViewById(RHelper.get("id.message_list"));
         if(chatType != EaseConstant.CHATTYPE_SINGLE)
             messageList.setShowUserNick(true);
         listView = messageList.getListView();
 
         extendMenuItemClickListener = new MyItemClickListener();
-        inputMenu = (EaseChatInputMenu) getView().findViewById(TiRHelper.getApplicationResource("id.input_menu"));
+        inputMenu = (EaseChatInputMenu) getView().findViewById(RHelper.get("id.input_menu"));
         registerExtendMenuItem();
         // init input menu
         inputMenu.init();
@@ -188,20 +187,13 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         });
 
         swipeRefreshLayout = messageList.getSwipeRefreshLayout();
-        swipeRefreshLayout.setColorSchemeResources(R.color.holo_blue_bright, R.color.holo_green_light,
-                R.color.holo_orange_light, R.color.holo_red_light);
+        swipeRefreshLayout.setColorSchemeResources(RHelper.get("color.holo_blue_bright"), RHelper.get("color.holo_green_light"),
+                RHelper.get("color.holo_orange_light"), RHelper.get("color.holo_red_light"));
 
         inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        }
-        catch(Exception e){
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            e.printStackTrace(pw);
-            
-            Log.d("----hello---error----", sw.toString()); 
-        }
+        
     }
 
     /**

@@ -99,7 +99,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
             return;
         }
         
-		setContentView(R.layout.em_activity_group_details);
+		setContentView(RHelper.get("layout.em_activity_group_details"));
 		instance = this;
 		st = getResources().getString(RHelper.get("string.people"));
 		clearAllHistory = (RelativeLayout) findViewById(RHelper.get("id.clear_all_history"));
@@ -142,7 +142,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		List<String> members = new ArrayList<String>();
 		members.addAll(group.getMembers());
 		
-		adapter = new GridAdapter(this, R.layout.em_grid, members);
+		adapter = new GridAdapter(this, RHelper.get("layout.em_grid"), members);
 		userGridview.setAdapter(adapter);
 
 		// 保证每次进详情看到的都是最新的group

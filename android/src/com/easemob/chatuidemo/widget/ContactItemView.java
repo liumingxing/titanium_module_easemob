@@ -34,8 +34,7 @@ public class ContactItemView extends LinearLayout{
         Drawable image = ta.getDrawable(R.styleable.ContactItemView_contactItemImage);
         ta.recycle();
         
-        try{
-        LayoutInflater.from(context).inflate(TiRHelper.getApplicationResource("layout.em_widget_contact_item"), this);
+        LayoutInflater.from(context).inflate(RHelper.get("layout.em_widget_contact_item"), this);
         ImageView avatar = (ImageView) findViewById(RHelper.get("id.avatar"));
         unreadMsgView = (TextView) findViewById(RHelper.get("id.unread_msg_number"));
         TextView nameView = (TextView) findViewById(RHelper.get("id.name"));
@@ -43,9 +42,6 @@ public class ContactItemView extends LinearLayout{
             avatar.setImageDrawable(image);
         }
         nameView.setText(name);
-        }
-        catch(Exception e){
-        }
     }
     
     public void setUnreadCount(int unreadCount){

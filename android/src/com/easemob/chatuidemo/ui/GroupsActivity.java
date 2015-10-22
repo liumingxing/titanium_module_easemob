@@ -85,8 +85,8 @@ public class GroupsActivity extends BaseActivity {
         groupListView.setAdapter(groupAdapter);
 		
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(RHelper.get("id.swipe_layout"));
-		swipeRefreshLayout.setColorSchemeResources(R.color.holo_blue_bright, R.color.holo_green_light,
-		                R.color.holo_orange_light, R.color.holo_red_light);
+		swipeRefreshLayout.setColorSchemeResources(RHelper.get("color.holo_blue_bright"), RHelper.get("color.holo_green_light"),
+		                RHelper.get("color.holo_orange_light"), RHelper.get("color.holo_red_light"));
 		//下拉刷新
 		swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
 

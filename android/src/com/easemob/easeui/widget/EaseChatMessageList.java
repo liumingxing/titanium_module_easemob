@@ -17,6 +17,7 @@ import com.easemob.easeui.adapter.EaseMessageAdapter;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
 
 import org.appcelerator.titanium.util.TiRHelper;
+import com.mamashai.easemob.RHelper;
 
 public class EaseChatMessageList extends RelativeLayout{
     

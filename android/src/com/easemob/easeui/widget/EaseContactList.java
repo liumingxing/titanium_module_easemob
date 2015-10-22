@@ -18,6 +18,7 @@ import com.easemob.easeui.adapter.EaseContactAdapter;
 import com.easemob.easeui.domain.EaseUser;
 
 import org.appcelerator.titanium.util.TiRHelper;
+import com.mamashai.easemob.RHelper;
 
 public class EaseContactList extends RelativeLayout {
     protected static final String TAG = EaseContactList.class.getSimpleName();

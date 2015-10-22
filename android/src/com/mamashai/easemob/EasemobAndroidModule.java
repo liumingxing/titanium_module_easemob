@@ -97,11 +97,6 @@ public class EasemobAndroidModule extends KrollModule
 				DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
 				
 				Log.d(LCAT, "登录成功");
-				/*
-				Intent intent = new Intent(LoginActivity.this,
-						MainActivity.class);
-				startActivity(intent);
-				*/
 			}
 
 			@Override

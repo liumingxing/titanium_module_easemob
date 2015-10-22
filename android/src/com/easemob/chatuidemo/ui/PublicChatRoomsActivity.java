@@ -64,7 +64,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.em_activity_public_groups);
+		setContentView(RHelper.get("layout.em_activity_public_groups"));
 
 		// 搜索框
 		pb = (ProgressBar) findViewById(RHelper.get("id.progressBar"));
@@ -73,7 +73,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		title.setText(getResources().getString(RHelper.get("string.chat_room")));
 		chatRoomList = new ArrayList<EMChatRoom>();
 		
-		View footView = getLayoutInflater().inflate(R.layout.em_listview_footer_view, null);
+		View footView = getLayoutInflater().inflate(RHelper.get("layout.em_listview_footer_view"), null);
         footLoadingLayout = (LinearLayout) footView.findViewById(RHelper.get("id.loading_layout"));
         footLoadingPB = (ProgressBar)footView.findViewById(RHelper.get("id.loading_bar"));
         footLoadingText = (TextView) footView.findViewById(RHelper.get("id.loading_text"));
@@ -220,7 +220,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.em_row_group, null);
+				convertView = inflater.inflate(RHelper.get("layout.em_row_group"), null);
 			}
 
 			((TextView) convertView.findViewById(RHelper.get("id.name"))).setText(getItem(position).getName());

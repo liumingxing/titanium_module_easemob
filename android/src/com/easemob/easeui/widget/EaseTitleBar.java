@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.appcelerator.titanium.util.TiRHelper;
 
 import com.easemob.easeui.R;
+import com.mamashai.easemob.RHelper;
 
 /**
  * 标题栏

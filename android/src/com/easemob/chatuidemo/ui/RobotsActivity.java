@@ -62,7 +62,7 @@ public class RobotsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		setContentView(R.layout.em_fragment_robots);
+		setContentView(RHelper.get("layout.em_fragment_robots"));
 		inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		mListView = (ListView) findViewById(RHelper.get("id.list"));
 		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(RHelper.get("id.swipe_layout"));
@@ -182,7 +182,7 @@ public class RobotsActivity extends BaseActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.em_row_robots, null);
+				convertView = inflater.inflate(RHelper.get("layout.em_row_robots"), null);
 			}
 			((TextView) convertView.findViewById(RHelper.get("id.name"))).setText(getItem(position).getNick());
 			return convertView;

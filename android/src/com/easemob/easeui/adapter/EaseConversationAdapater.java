@@ -81,7 +81,7 @@ public class EaseConversationAdapater extends ArrayAdapter<EMConversation> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.ease_row_chat_history, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(RHelper.get("layout.ease_row_chat_history"), parent, false);
         }
         ViewHolder holder = (ViewHolder) convertView.getTag();
         if (holder == null) {

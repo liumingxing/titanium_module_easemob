@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import org.appcelerator.titanium.util.TiRHelper;
 import com.easemob.easeui.R;
+import com.mamashai.easemob.RHelper;
 
 public class EaseSwitchButton extends FrameLayout{
 
