@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+architectures: armeabi armeabi-v7a x86
+description: EaseMob sdk module
+author: liumingxing
+license: MIT
+copyright: Copyright (c) 2015 by mamashai.com
+
+# these should not be edited
+name: easemob_android
+moduleid: com.mamashai.easemob
+guid: a002db4d-0b28-4f32-9696-d14ca40ba1e3
+platform: android
+minsdk: 3.1.1.GA

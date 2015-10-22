@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0
+apiversion: 2
+architectures: armv7 arm64 i386 x86_64
+description: 环信sdk module
+author: liumingxing
+license: MIT
+copyright: mamashai.com
+
+# these should not be edited
+name: EaseMob
+moduleid: com.mamashai.easemob
+guid: c1216e40-8b9c-4ef9-b20f-399353f2b806
+platform: iphone
+minsdk: 4.0.0.GA
