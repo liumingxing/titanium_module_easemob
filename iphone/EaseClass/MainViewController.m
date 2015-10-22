@@ -146,11 +146,15 @@ static NSString *kGroupName = @"GroupName";
 
 - (void)setupSubviews
 {
+    self.tabBar.hidden = TRUE;   //modify by lmx
+    
     self.tabBar.backgroundImage = [[UIImage imageNamed:@"tabbarBackground"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
     self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
     
     _chatListVC = [[ChatListViewController alloc] init];
     [_chatListVC networkChanged:_connectionState];
+
+
     _chatListVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"title.conversation", @"Conversations")
                                                            image:nil
                                                              tag:0];
@@ -158,7 +162,8 @@ static NSString *kGroupName = @"GroupName";
                          withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
     [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
     [self selectedTapTabBarItems:_chatListVC.tabBarItem];
-    
+
+ 
     _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
     _contactsVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"title.addressbook", @"AddressBook")
                                                            image:nil
@@ -178,7 +183,10 @@ static NSString *kGroupName = @"GroupName";
     [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
     [self selectedTapTabBarItems:_settingsVC.tabBarItem];
     
-    self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
+    //modifyed by lmx
+    //self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
+    self.viewControllers = @[_chatListVC];
+    
     [self selectedTapTabBarItems:_chatListVC.tabBarItem];
 }
 

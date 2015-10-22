@@ -9,6 +9,11 @@
 
 @interface ComMamashaiEasemobModule : TiModule
 {
+	UINavigationController *h_nav;
 }
+
+-(void)doneButtonPressed:(id)sender;
+
+
 
 @end

@@ -150,16 +150,35 @@
     } onQueue:nil];
 }
 
+-(void)doneButtonPressed:(id)sender{
+	//[self dismissModalViewControllerAnimated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+    	[[TiApp app] hideModalController:h_nav animated: YES];
+    });
+}
+
+
 -(void)chatWithUser:(id)args
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
         MainViewController *main = [[MainViewController alloc] init];
 	    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
+	    h_nav = nav;
+        
+        
+	    
+	    UIBarButtonItem * doneButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                        target:self
+                                        action:@selector(doneButtonPressed:) ];
+		main.navigationItem.rightBarButtonItem = doneButton;
+		
+		                                        
 	    [[TiApp app] showModalController:nav animated: YES];
 	    
 	    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[args objectAtIndex: 0] isGroup:NO];
 	    chatVC.title = [args objectAtIndex: 0];
-	    [nav pushViewController:chatVC animated:YES];	    
+	    [nav pushViewController:chatVC animated:YES];
     });
     
 }
