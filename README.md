@@ -48,7 +48,7 @@ github不允许上传大于100M的文件，工程里面iphone/EaseMobSdk/libEase
   	title: "开始聊天"
   });
   btn.addEventListener("click", function(e){
-  	EaseMob.chatWithUser(to.value, "刘明星2");
+  	EaseMob.chatWithUser(to.value, "刘明星2", "single");      //第三个参数为"group"则为群聊
   });
   win.add(from);
   win.add(btn_login);
