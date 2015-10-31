@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.easemob.chatuidemo.R;
 import com.easemob.easeui.ui.EaseChatFragment;
 import org.appcelerator.titanium.util.TiRHelper;
-
+import com.mamashai.easemob.RHelper;
 import android.util.Log;
 
 
@@ -22,12 +22,7 @@ public class ChatActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-        try{
-        	setContentView(TiRHelper.getApplicationResource("layout.em_activity_chat"));
-        }
-        catch(Exception e){
-        	Log.d("map", "-------fuck-------");
-        }
+        setContentView(RHelper.get("layout.em_activity_chat"));
         activityInstance = this;
         //聊天人或群id
         toChatUsername = getIntent().getExtras().getString("userId");
@@ -35,11 +30,8 @@ public class ChatActivity extends BaseActivity{
         chatFragment = new ChatFragment();
         //传入参数
         chatFragment.setArguments(getIntent().getExtras());
-        try{
-        	getSupportFragmentManager().beginTransaction().add(TiRHelper.getApplicationResource("id.container"), chatFragment).commit();
-        }
-        catch(Exception e){
-        }
+        
+        getSupportFragmentManager().beginTransaction().add(RHelper.get("id.container"), chatFragment).commit();
         
         
     }

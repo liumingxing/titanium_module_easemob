@@ -102,12 +102,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		try{
-			return inflater.inflate(TiRHelper.getApplicationResource("layout.em_fragment_conversation_settings"), container, false);
-		}
-		catch(Exception e){
-			return null;
-		}
+		return inflater.inflate(RHelper.get("layout.em_fragment_conversation_settings"), container, false);
 	}
 
 	@Override
@@ -132,6 +127,9 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 		if(!TextUtils.isEmpty(EMChatManager.getInstance().getCurrentUser())){
 			logoutBtn.setText(getString(RHelper.get("string.button_logout")) + "(" + EMChatManager.getInstance().getCurrentUser() + ")");
 		}
+		//modify by lmx
+		logoutBtn.setVisibility(View.INVISIBLE);
+		//titleBar.setTitle("设置");
 
 		textview1 = (TextView) getView().findViewById(RHelper.get("id.textview1"));
 		textview2 = (TextView) getView().findViewById(RHelper.get("id.textview2"));

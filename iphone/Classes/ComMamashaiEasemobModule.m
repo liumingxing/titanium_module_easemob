@@ -142,9 +142,13 @@
 {
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[args objectAtIndex:0] password:[args objectAtIndex:1] completion:^(NSDictionary *loginInfo, EMError *error) {
         if (!error && loginInfo) {
+            TiModule* _app = self;
+            [_app fireEvent:@"login_success" withObject:nil];
             NSLog(@"登陆成功");
         }
         else{
+        	TiModule* _app = self;
+            [_app fireEvent:@"login_fail" withObject:nil];
         	NSLog(@"登录失败");
         }
     } onQueue:nil];
@@ -171,7 +175,7 @@
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                         target:self
                                         action:@selector(doneButtonPressed:) ];
-		main.navigationItem.rightBarButtonItem = doneButton;
+		main.navigationItem.leftBarButtonItem = doneButton;
 		
 		                                        
 	    [[TiApp app] showModalController:nav animated: YES];
@@ -180,7 +184,24 @@
 	    chatVC.title = [args objectAtIndex: 0];
 	    [nav pushViewController:chatVC animated:YES];
     });
-    
+}
+
+-(void)mainScreen:(id)args
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *main = [[MainViewController alloc] init];
+	    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
+	    h_nav = nav;
+	    
+	    UIBarButtonItem * doneButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                        target:self
+                                        action:@selector(doneButtonPressed:) ];
+		main.navigationItem.leftBarButtonItem = doneButton;
+		
+		                                        
+	    [[TiApp app] showModalController:nav animated: YES];
+    });
 }
 
 @end

@@ -41,6 +41,12 @@ public abstract class EaseBaseFragment extends Fragment{
         }
     }
     
+    public void setTitle(String name){
+    	if(titleBar != null){
+            titleBar.setTitle(name);
+        }
+    }
+    
     /**
      * 隐藏标题栏
      */

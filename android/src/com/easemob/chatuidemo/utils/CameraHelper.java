@@ -311,6 +311,7 @@ public class CameraHelper implements PreviewCallback {
     }
 
     boolean isScreenOriatationPortrait() {
-        return DemoApplication.applicationContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        return true;
+        //return DemoApplication.applicationContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 }

@@ -5,6 +5,7 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
+import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -31,18 +32,16 @@ public class ConversationListFragment extends EaseConversationListFragment{
     @Override
     protected void initView() {
         super.initView();
-        try{
-        View errorView = (LinearLayout) View.inflate(getActivity(),TiRHelper.getApplicationResource("layout.em_chat_neterror_item"), null);
+        View errorView = (LinearLayout) View.inflate(getActivity(),RHelper.get("layout.em_chat_neterror_item"), null);
         errorItemContainer.addView(errorView);
         errorText = (TextView) errorView.findViewById(RHelper.get("id.tv_connect_errormsg"));
-        }
-        catch(Exception e){
-        }
+        
     }
     
     @Override
     protected void setUpView() {
         super.setUpView();
+        titleBar.setTitle("会话");
         // 注册上下文菜单
         registerForContextMenu(conversationListView);
         conversationListView.setOnItemClickListener(new OnItemClickListener() {

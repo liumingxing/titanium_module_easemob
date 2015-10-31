@@ -48,6 +48,11 @@ public class ContactItemView extends LinearLayout{
         unreadMsgView.setText(String.valueOf(unreadCount));
     }
     
+    public void setName(String name){
+    	TextView nameView = (TextView) findViewById(RHelper.get("id.name"));
+    	nameView.setText(name);
+    }
+    
     public void showUnreadMsgView(){
         unreadMsgView.setVisibility(View.VISIBLE);
     }

@@ -8,7 +8,7 @@
  */
 package com.mamashai.easemob;
 
-
+import java.util.HashMap;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 
@@ -30,6 +30,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 import android.content.Intent;
 import android.os.Bundle;
+import com.easemob.chatuidemo.Constant;
 
 @Kroll.module(name="EasemobAndroid", id="com.mamashai.easemob")
 public class EasemobAndroidModule extends KrollModule
@@ -69,9 +70,13 @@ public class EasemobAndroidModule extends KrollModule
 	public String login(String username, String password, String nick)
 	{
 		if (TextUtils.isEmpty(username)) {
+			HashMap<String, Object> event = new HashMap<String, Object>();
+			fireEvent("login_fail", event);
 			return "用户名不能为空";
 		}
 		if (TextUtils.isEmpty(password)) {
+			HashMap<String, Object> event = new HashMap<String, Object>();
+			fireEvent("login_fail", event);
 			return "密码不能为空";
 		}
 		
@@ -97,6 +102,9 @@ public class EasemobAndroidModule extends KrollModule
 				DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
 				
 				Log.d(LCAT, "登录成功");
+				
+				HashMap<String, Object> event = new HashMap<String, Object>();
+				fireEvent("login_success", event);
 			}
 
 			@Override
@@ -106,13 +114,15 @@ public class EasemobAndroidModule extends KrollModule
 			@Override
 			public void onError(final int code, final String message) {
 				Log.d(LCAT, "登录失败");
+				HashMap<String, Object> event = new HashMap<String, Object>();
+				fireEvent("login_fail", event);
 			}
 		});
 		return "ok";
 	}
 	
 	@Kroll.method
-	public String chatWithUser(String username, String nickname){
+	public String chatWithUser(String username, String nickname, String tp){
 		//startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", username));
 		
 		/*
@@ -123,19 +133,25 @@ public class EasemobAndroidModule extends KrollModule
         
         
         Intent intent = new Intent(TiApplication.getInstance().getApplicationContext(), ChatActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("userId", username);
-        Log.d(LCAT, username);
-        TiApplication.getInstance().getApplicationContext().startActivity(intent);
-        
-        /*
-        Intent intent = new Intent(TiApplication.getInstance().getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("userId", username);
-        Log.d(LCAT, username);
-        TiApplication.getInstance().getApplicationContext().startActivity(intent);
-        */
+	    if (tp.equals("group")){
+	    	Log.d(LCAT, "~~~~~~~~~~~~~~~group chat~~~~~~~~~~~~~");
+	    	intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
+	    }
+	    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    intent.putExtra("userId", username);
+	    Log.d(LCAT, username);
+	    TiApplication.getInstance().getApplicationContext().startActivity(intent);
+	        
   		return "ok";
+	}
+	
+	@Kroll.method
+	//显示主界面
+	public String mainScreen(){
+		Intent intent = new Intent(TiApplication.getInstance().getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        TiApplication.getInstance().getApplicationContext().startActivity(intent);
+        return "ok";
 	}
 }
 

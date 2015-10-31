@@ -58,14 +58,23 @@ public class ContactListFragment extends EaseContactListFragment {
     @Override
     protected void initView() {
         super.initView();
-        try{
-        View headerView = LayoutInflater.from(getActivity()).inflate(TiRHelper.getApplicationResource("layout.em_contacts_header"), null);
+        View headerView = LayoutInflater.from(getActivity()).inflate(RHelper.get("layout.em_contacts_header"), null);
         HeaderItemClickListener clickListener = new HeaderItemClickListener();
         applicationItem = (ContactItemView) headerView.findViewById(RHelper.get("id.application_item"));
         applicationItem.setOnClickListener(clickListener);
         headerView.findViewById(RHelper.get("id.group_item")).setOnClickListener(clickListener);
         headerView.findViewById(RHelper.get("id.chat_room_item")).setOnClickListener(clickListener);
         headerView.findViewById(RHelper.get("id.robot_item")).setOnClickListener(clickListener);
+        
+        ContactItemView item1 = (ContactItemView) headerView.findViewById(RHelper.get("id.application_item"));
+        item1.setName("申请与通知");
+        ContactItemView item2 = (ContactItemView) headerView.findViewById(RHelper.get("id.group_item"));
+        item2.setName("群聊");
+        ContactItemView item3 = (ContactItemView) headerView.findViewById(RHelper.get("id.chat_room_item"));
+        item3.setVisibility(View.GONE);
+        ContactItemView item4 = (ContactItemView) headerView.findViewById(RHelper.get("id.robot_item"));
+        item4.setVisibility(View.GONE);
+        
         //添加headerview
         listView.addHeaderView(headerView);
         //添加正在加载数据提示的loading view
@@ -73,9 +82,6 @@ public class ContactListFragment extends EaseContactListFragment {
         contentContainer.addView(loadingView);
         //注册上下文菜单
         registerForContextMenu(listView);
-        }
-        catch(Exception e){
-        }
     }
     
     @Override
@@ -94,7 +100,8 @@ public class ContactListFragment extends EaseContactListFragment {
     
     @Override
     protected void setUpView() {
-        titleBar.setRightImageResource(RHelper.get("drawabledrawable.em_add"));
+        titleBar.setRightImageResource(RHelper.get("drawable.em_add"));
+        titleBar.setTitle("通讯录");
         titleBar.setRightLayoutClickListener(new OnClickListener() {
             
             @Override

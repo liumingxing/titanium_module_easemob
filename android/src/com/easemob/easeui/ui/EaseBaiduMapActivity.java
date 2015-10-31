@@ -227,6 +227,8 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 				return;
 			}
 			Log.d("map", "On location change received:" + location);
+			Log.d("map", "latitude:" + String.valueOf(location.getLatitude()));
+			Log.d("map", "Longitude:" + String.valueOf(location.getLongitude()));
 			Log.d("map", "addr:" + location.getAddrStr());
 			sendButton.setEnabled(true);
 			if (progressDialog != null) {

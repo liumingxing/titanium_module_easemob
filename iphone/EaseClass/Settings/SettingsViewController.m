@@ -240,7 +240,7 @@
         [logoutButton setTitle:logoutButtonTitle forState:UIControlStateNormal];
         [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [logoutButton addTarget:self action:@selector(logoutAction) forControlEvents:UIControlEventTouchUpInside];
-        [_footerView addSubview:logoutButton];
+   //     [_footerView addSubview:logoutButton];
     }
     
     return _footerView;

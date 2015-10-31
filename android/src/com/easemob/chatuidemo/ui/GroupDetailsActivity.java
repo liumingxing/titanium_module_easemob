@@ -573,8 +573,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				}
 			} else if (position == getCount() - 2) { // 添加群组成员按钮
 			    holder.textView.setText("");
-			    holder.imageView.setImageResource(RHelper.get("drawabledrawable.em_smiley_add_btn"));
-//				button.setCompoundDrawablesWithIntrinsicBounds(0, RHelper.get("drawabledrawable.smiley_add_btn"), 0, 0);
+			    holder.imageView.setImageResource(RHelper.get("drawable.em_smiley_add_btn"));
+//				button.setCompoundDrawablesWithIntrinsicBounds(0, RHelper.get("drawable.smiley_add_btn"), 0, 0);
 				// 如果不是创建者或者没有相应权限
 				if (!group.isAllowInvites() && !group.getOwner().equals(EMChatManager.getInstance().getCurrentUser())) {
 					// if current user is not group admin, hide add/remove btn

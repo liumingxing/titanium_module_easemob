@@ -184,8 +184,8 @@ static NSString *kGroupName = @"GroupName";
     [self selectedTapTabBarItems:_settingsVC.tabBarItem];
     
     //modifyed by lmx
-    //self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
-    self.viewControllers = @[_chatListVC];
+    self.viewControllers = @[_chatListVC, _contactsVC, _settingsVC];
+    //self.viewControllers = @[_chatListVC];
     
     [self selectedTapTabBarItems:_chatListVC.tabBarItem];
 }

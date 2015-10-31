@@ -128,6 +128,10 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 		getSupportFragmentManager().beginTransaction().add(RHelper.get("id.fragment_container"), conversationListFragment)
 				.add(RHelper.get("id.fragment_container"), contactListFragment).hide(contactListFragment).show(conversationListFragment)
 				.commit();
+				
+		//conversationListFragment.setTitle("会话");		
+		//contactListFragment.setTitle("通讯录");
+		//settingFragment.setTitle("设置");
 		
 		// 注册群组和联系人监听
         DemoHelper.getInstance().registerGroupAndContactListener();
@@ -522,10 +526,12 @@ public class MainActivity extends BaseActivity implements EMEventListener {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		/*
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			moveTaskToBack(false);
 			return true;
 		}
+		*/
 		return super.onKeyDown(keyCode, event);
 	}
 
