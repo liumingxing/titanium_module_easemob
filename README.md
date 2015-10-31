@@ -1,8 +1,10 @@
 # titanium_module_easemob
-* 环信IM SDK的封装，ios和安卓都支持，由于还未商用，接口较少，且稳定性没有接受严酷考验。
+* 环信IM SDK的封装，ios和安卓都支持。
 * 作者刘明星 lmxbitihero@126.com
 
-github不允许上传大于100M的文件，工程里面iphone/EaseMobSdk/libEaseMObClientSDK.a体积大于100M，故我暂时压缩了，使用的时候需要手动解开。sample中引入的module也有一个文件大于100M，使用时先把module编出来，再导入到sample工程中即可。
+github不允许上传大于100M的文件，工程里面iphone/EaseMobSdk/libEaseMObClientSDK.a体积大于100M，故我暂时压缩了，使用的时候需要手动解开。
+
+完整的Demo项目比较复杂，可参考 <a href="https://github.com/liumingxing/titanium_module_easemob_demo">Demo</a>。
 
 调用示例：
 ```javascript
