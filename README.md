@@ -9,7 +9,7 @@ github不允许上传大于100M的文件，工程里面iphone/EaseMobSdk/libEase
 调用示例：
 ```javascript
   var EaseMob = require("com.mamashai.easemob");
-  EaseMob.config("mamashai#bbrl", "bbrl_dev");
+  EaseMob.config("mamashai#bbrl", "bbrl_dev");   //注意安卓下配置不是这样做，而是修改timodule.xml文件
   
   var win = Ti.UI.createWindow({
   	backgroundColor: "white"
