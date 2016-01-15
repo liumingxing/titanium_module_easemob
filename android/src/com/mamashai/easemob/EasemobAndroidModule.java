@@ -39,7 +39,7 @@ public class EasemobAndroidModule extends KrollModule
 	// Standard Debugging variables
 	private static final String LCAT = "EasemobAndroidModule";
 	private static final boolean DBG = TiConfig.LOGD;
-	
+
 	private String currentUsername;
 	private String currentPassword;
 	private String currentNick;
@@ -58,14 +58,14 @@ public class EasemobAndroidModule extends KrollModule
 		Log.d(LCAT, "inside onAppCreate");
 		// put module init code that needs to run when the application is created
 	}
-	
+
 	@Kroll.method
 	public String config(String key, String cert)
 	{
 		DemoHelper.getInstance().init(TiApplication.getInstance().getApplicationContext());
 		return "ok";
 	}
-	
+
 	@Kroll.method
 	public String login(String username, String password, String nick)
 	{
@@ -79,13 +79,13 @@ public class EasemobAndroidModule extends KrollModule
 			fireEvent("login_fail", event);
 			return "密码不能为空";
 		}
-		
+
 		currentUsername = username;
 		currentPassword = password;
 		currentNick = nick;
 
 		final long start = System.currentTimeMillis();
-		
+
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
 			@Override
 			public void onSuccess() {
@@ -94,15 +94,15 @@ public class EasemobAndroidModule extends KrollModule
 
 			    EMGroupManager.getInstance().loadAllGroups();
 				EMChatManager.getInstance().loadAllConversations();
-				
+
 				boolean updatenick = EMChatManager.getInstance().updateCurrentUserNick(currentNick);
 				if (!updatenick) {
 					Log.e("LoginActivity", "update current user nick fail");
 				}
 				DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
-				
+
 				Log.d(LCAT, "登录成功");
-				
+
 				HashMap<String, Object> event = new HashMap<String, Object>();
 				fireEvent("login_success", event);
 			}
@@ -120,18 +120,38 @@ public class EasemobAndroidModule extends KrollModule
 		});
 		return "ok";
 	}
-	
+
+	@Kroll.method
+	public String logout(){
+    EMChatManager.getInstance().logout(new EMCallBack() {
+      @Override
+      public void onSuccess() {
+				Log.d(LCAT, "登出成功");
+      }
+      @Override
+      public void onProgress(int progress, String status) {
+
+      }
+      @Override
+      public void onError(int code, String message) {
+				Log.d(LCAT, "登出失败");
+      }
+    });
+    return "ok";
+  }
+
+
 	@Kroll.method
 	public String chatWithUser(String username, String nickname, String tp){
 		//startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", username));
-		
+
 		/*
 		Intent intent = new Intent(TiApplication.getInstance().getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         TiApplication.getInstance().getApplicationContext().startActivity(intent);
         */
-        
-        
+
+
         Intent intent = new Intent(TiApplication.getInstance().getApplicationContext(), ChatActivity.class);
 	    if (tp.equals("group")){
 	    	Log.d(LCAT, "~~~~~~~~~~~~~~~group chat~~~~~~~~~~~~~");
@@ -141,10 +161,10 @@ public class EasemobAndroidModule extends KrollModule
 	    intent.putExtra("userId", username);
 	    Log.d(LCAT, username);
 	    TiApplication.getInstance().getApplicationContext().startActivity(intent);
-	        
+
   		return "ok";
 	}
-	
+
 	@Kroll.method
 	//显示主界面
 	public String mainScreen(){
