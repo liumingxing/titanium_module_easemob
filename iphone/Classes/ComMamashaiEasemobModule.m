@@ -99,32 +99,32 @@
 {
 	NSLog([args objectAtIndex:0]);
 	NSLog([args objectAtIndex:1]);
-	
+
     [[EaseMob sharedInstance] registerSDKWithAppKey:[args objectAtIndex:0] apnsCertName:[args objectAtIndex:1]];
     [[EaseMob sharedInstance] application:[TiApp app] didFinishLaunchingWithOptions:[[TiApp app] launchOptions]];
-    
+
     //[[TiApp app] parseApplication:[TiApp app] didFinishLaunchingWithOptions:[[TiApp app] launchOptions]];
-    
+
     [Parse enableLocalDatastore];
-    
+
     // Initialize Parse.
     [Parse setApplicationId:@"UUL8TxlHwKj7ZXEUr2brF3ydOxirCXdIj9LscvJs"
                   clientKey:@"B1jH9bmxuYyTcpoFfpeVslhmLYsytWTxqYqKQhBJ"];
-    
+
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions: [[TiApp app] launchOptions]];
-    
-    
+
+
     // setup ACL
     PFACL *defaultACL = [PFACL ACL];
-    
+
     [defaultACL setPublicReadAccess:YES];
     [defaultACL setPublicWriteAccess:YES];
-    
+
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 
-    
-    
+
+
     return @"ok";
 }
 
@@ -144,6 +144,7 @@
         if (!error && loginInfo) {
             TiModule* _app = self;
             [_app fireEvent:@"login_success" withObject:nil];
+            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
             NSLog(@"登陆成功");
         }
         else{
@@ -154,6 +155,14 @@
     } onQueue:nil];
 }
 
+- (void)logout{
+  [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+  [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
+}
+
+- (void)didLogoffWithError:(EMError *)error{
+  NSLog(error);
+}
 -(void)doneButtonPressed:(id)sender{
 	//[self dismissModalViewControllerAnimated:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -168,18 +177,18 @@
         MainViewController *main = [[MainViewController alloc] init];
 	    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
 	    h_nav = nav;
-        
-        
-	    
+
+
+
 	    UIBarButtonItem * doneButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                         target:self
                                         action:@selector(doneButtonPressed:) ];
 		main.navigationItem.leftBarButtonItem = doneButton;
-		
-		                                        
+
+
 	    [[TiApp app] showModalController:nav animated: YES];
-	    
+
 	    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[args objectAtIndex: 0] isGroup:NO];
 	    chatVC.title = [args objectAtIndex: 0];
 	    [nav pushViewController:chatVC animated:YES];
@@ -192,14 +201,14 @@
         MainViewController *main = [[MainViewController alloc] init];
 	    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
 	    h_nav = nav;
-	    
+
 	    UIBarButtonItem * doneButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                         target:self
                                         action:@selector(doneButtonPressed:) ];
 		main.navigationItem.leftBarButtonItem = doneButton;
-		
-		                                        
+
+
 	    [[TiApp app] showModalController:nav animated: YES];
     });
 }
