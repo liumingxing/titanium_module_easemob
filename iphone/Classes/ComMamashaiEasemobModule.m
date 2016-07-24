@@ -195,6 +195,12 @@
     });
 }
 
+- (int)get_unread_count:(id)args
+{
+  EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:[args objectAtIndex:0] conversationType:eConversationTypeChat];
+  return [conversation unreadMessagesCount];
+}
+
 -(void)mainScreen:(id)args
 {
 	dispatch_async(dispatch_get_main_queue(), ^{

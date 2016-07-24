@@ -140,6 +140,11 @@ public class EasemobAndroidModule extends KrollModule
     return "ok";
   }
 
+  @Kroll.method
+	public int get_unread_count(String username){
+    EMConversation conversation = EMChatManager.getInstance().getConversation(username);
+    return conversation.getUnreadMsgCount();
+  }
 
 	@Kroll.method
 	public String chatWithUser(String username, String nickname, String tp){
