@@ -1,4 +1,5 @@
 .svn
+.DS_Store
 libEaseMobClientSDK.a
 libcom.mamashai.easemob.a
 build
