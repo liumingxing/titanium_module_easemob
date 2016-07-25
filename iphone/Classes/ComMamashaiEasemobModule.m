@@ -195,6 +195,22 @@
     });
 }
 
+//回传devicetoken，注册推送，传入一个参数devicetoken
+-(id)registerApn:(id)args
+{
+	NSLog([args objectAtIndex:0]);
+
+	[[EaseMob sharedInstance] application:[TiApp app] didRegisterForRemoteNotificationsWithDeviceToken:[args objectAtIndex:0]];	
+}
+
+//设置Apn推送昵称
+-(id)setApnNick:(id)args
+{
+	NSLog([args objectAtIndex:0]);
+
+	[[EaseMob sharedInstance].chatManager setApnsNickname:[args objectAtIndex:0]];
+}
+
 - (int)get_unread_count:(id)args
 {
   EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:[args objectAtIndex:0] conversationType:eConversationTypeChat];
